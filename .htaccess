@@ -1,0 +1,17 @@
+#   Empeche la visualisation de l'arborescence, n'a rien a voir avec le masquage du < index.php >.
+Options -Indexes
+Options +FollowSymLinks -MultiViews
+
+# Turn mod_rewrite on
+RewriteEngine On
+RewriteBase /
+
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.*)$ index.php?$1 [L,QSA]
+
+RewriteCond %{THE_REQUEST} ^[A-Z]{3,}\s(.*)/index\.php [NC]
+RewriteRule ^ %1 [R=301,L]
+
+#   Affichage UTF-8
+AddDefaultCharset UTF-8

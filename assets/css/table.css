@@ -1,0 +1,27 @@
+table {padding: 0; margin : 10px auto auto auto; border-collapse: collapse; color: #333; background: #F3F5F7;}
+
+table caption {text-align: center; text-transform: uppercase;  padding-bottom: 10px; font: 200% "Lucida Grande", "Lucida Sans Unicode", "Trebuchet MS", sans-serif;}
+
+table thead th {background: #3A4856; padding: 15px 10px; color: #fff; text-align: center; font-weight: normal;}
+
+table tbody, table thead {border-left: 1px solid #EAECEE; border-right: 1px solid #EAECEE;}
+
+table tbody {border-bottom: 1px solid #EAECEE;}
+                      
+table tbody td, table tbody th {padding: 10px; text-align: center;}
+
+table tbody tr {background: #F3F5F7;}
+
+table tbody tr.odd {background: #F0F2F4;}
+
+table tfoot td, table tfoot th, table tfoot tr {text-align: center; font: 120%  "Lucida Grande", "Lucida Sans Unicode", "Trebuchet MS", sans-serif; text-transform: uppercase; background: #fff; padding: 10px;}
+
+img, a img {border: none; text-decoration: none;}
+
+tbody .nostyle
+{
+	background: #9ecaf4;
+	border-bottom: 1px solid #9ecaf4;
+	border-left: 1px solid #9ecaf4;
+	border-right: 1px solid #9ecaf4;
+}

@@ -1,0 +1,439 @@
+body
+{
+	background-color: #9ecaf4;
+	margin: 0px;
+	height: 85%;
+	font-family: "Lucida Grande", "Lucida Sans Unicode", "Trebuchet MS", sans-serif;
+	font-size: 14px;
+}
+
+html
+{
+	height: 82%;
+	min-width: 1080px;
+}
+
+form input[type=text], form input[type=email], form input[type=password]
+{
+	width: 200px;
+}
+
+textarea
+{
+	width: 400px;
+}
+
+.contenu
+{
+	width: 900px;
+	margin: auto;
+	position : relative;
+	min-height: 100%;
+}
+
+/* En tete */
+header
+{
+	background: url('../images/barre_orange.png') repeat-x bottom;
+	background-color: #5fbae5;
+	height: 200px;
+}
+
+#logo
+{
+	padding-top: 10px;
+	position: absolute;
+	left: -50px;
+}
+
+nav
+{
+	display: inline-block;
+	position: absolute;
+	top:150px;
+	left: 169px;
+}
+
+nav *
+{
+	display: inline-block;
+}
+
+nav a
+{
+	color: black;
+	text-decoration: none;
+}
+
+nav ul
+{
+	list-style-type: none;
+}
+
+.margeEntreLesGants
+{
+	margin-bottom: 50px;
+}
+
+.margeEntreLesInfosPanier
+{
+	margin-right: 5px;
+}
+
+#cursor
+{
+	cursor: pointer;
+}
+
+#accueil
+{
+	margin-left: 0px;
+}
+
+#simpleMessage article
+{
+	width:700px;
+}
+
+#simpleMessage
+{
+	font-size: 16px;
+}
+
+.itemMenu
+{
+	text-align:center;
+	height: 22px;
+	width:85px;
+	-webkit-border-top-left-radius: 10px;
+	-webkit-border-top-right-radius: 10px;
+	-moz-border-radius-topleft: 10px;
+	-moz-border-radius-topright: 50px;
+	border-top-left-radius: 10px;
+	border-top-right-radius: 10px;
+	border-style:solid;
+	border-color:#e79b16;
+	background-color: #e79b16;
+	margin-left: 25px;
+}
+
+.itemMenu:hover
+{
+	border-color:#b87a0e;
+	background-color: #b87a0e;
+}
+
+#submitHeader
+{
+	border:none;
+	background: url('../images/ok.png') no-repeat top left;
+	width: 50px;
+	height: 50px;
+	cursor : pointer;
+}
+
+.submitSuppression
+{
+	border:none;
+	background: url('../images/supprimer.png') no-repeat top left;
+	width: 15px;
+	cursor : pointer;
+	margin-left:10px;
+	outline-style:none;
+}
+
+#pagination
+{
+	font-size: 14.5px;
+}
+
+#quatreOnglets
+{
+	display: inline-block;
+	position: absolute;
+	top:8px;
+	right : -240px;
+}
+
+#troisOnglets
+{
+	display: inline-block;
+	position: absolute;
+	top:8px;
+	right : -360px;
+}
+
+.thTable, .tdTable
+{
+	margin-right: 30px;
+}
+
+#imagePanier
+{
+	width: 31px;
+}
+
+.ligneNoJS
+{
+	display: inline;
+}
+
+.basket
+{
+	margin-left: 3px;
+}
+
+#remMe
+{
+	font-size: 11px;
+	font-family: Arial,Helvetica,sans-serif;
+}
+
+#check
+{
+	vertical-align:middle;
+	margin-left: 0px;
+}
+
+#submitPanier
+{
+	background-color : #5fbae5;
+	border : none;
+	cursor : pointer;
+	font-size: 15px;
+	color: black;
+	font-weight: bold;
+	margin-left : -5px;
+}
+
+#Identifie
+{	
+	display: inline-block;
+	position: absolute;
+	top:40px;
+	right:0;
+}
+
+#Identification
+{	
+	display: inline-block;
+	position: absolute;
+	top:30px;
+	right:0;
+}
+
+#Identification input[type=text], #Identification input[type=password]
+{	
+	width: 150px;
+}
+
+#menu
+{
+	width: 100%;
+	height: 24px;
+	list-style-type: none;
+	margin-top : 25px;
+	margin-right : 100px;
+	position: relative;
+	text-align:right;
+	float:right;
+}
+
+#menu li a:link, #menu li a:visited
+{
+	display: inline-block;
+	height: 1%;
+	color: #FFF1ce;
+	margin: 0;
+	padding: 4px 8px;
+	text-decoration: none;
+	background: #17607D;
+	width: 117px;
+	text-align: center;
+	border-width: 2px;
+	border-style: solid;
+	border-color: black;
+}
+#menu li a:hover
+{
+	background-color: #c7a72b;
+}
+#menu li a:active
+{
+	background-color: #938243;
+}
+
+#menu .sousMenu
+{
+	display: none;
+	list-style-type: none;
+	margin-top: 5px;
+}
+
+
+#menu .sousMenu li a:hover
+{
+	background-image: none;
+	background-color: #E9B65B;
+}
+
+#menu .sousMenu .noborderbottom
+{
+	border-bottom-style: none;
+}
+
+#menu li:hover > .sousMenu
+{
+	display: block;
+}
+
+#Inscription
+{
+	display: inline-block;
+	position: absolute;
+	top:20px;
+	right:115px;
+}
+
+#Confirmation
+{
+	padding-top:35px;
+	padding-left:450px;
+}
+
+/* Corps */
+article, aside
+{
+	display: inline-block;
+	margin-top: 25px;
+	padding: 5px;
+	background-color: #9ecaf4;
+}
+
+article
+{
+	text-align: justify;
+	width: 590px;
+}
+
+aside
+{
+	text-align: center;
+	margin-top: 75px;
+	background-color: #9cd4ef;
+	position: absolute;
+	margin-left: 75px;
+	width: 215px;
+	border: black thin dashed;
+	min-width: 250px;
+}
+
+h1 {
+	text-align:center;
+}
+
+#form_inscription
+{
+	margin-top: 15px;
+}
+
+.forms
+{
+	margin-top: 30px;
+}
+
+.inputContact, .inputInscription, .inputEspace
+{
+	margin-bottom: 5px;
+}
+
+#mdp2
+{
+	margin-top: 10px;
+}
+
+#Formulaire label, #form_inscription label
+{
+	display: block;
+	width: 160px;
+	float: left;
+}
+
+.supprPanier
+{
+	display : inline-block;
+}
+
+.imagePanier
+{
+	margin-bottom : -20px;
+}
+
+.total
+{
+	font-size: 18px;
+	font-weight: bold;
+}
+
+#imgProduit
+{
+	display: block;
+	margin: auto;
+}
+
+#fleche
+{
+	float: right;
+}
+
+.liencatalogue:visited
+{
+	color: blue;
+}
+
+.liencatalogue
+{
+	text-decoration: none;
+}
+
+.liencatalogue:hover, section a:hover
+{
+	color:red;
+}
+
+#btonCommande
+{
+	font-family: Arial;
+	font-size: 14px;
+	padding: 5px 15px 5px 15px;
+	text-decoration: none;
+}
+
+#btonCommande:hover
+{
+	text-decoration: none;
+	cursor: pointer;
+	outline-style:none;
+}
+
+#asideBton
+{
+	background-color: #9ecaf4;
+	border: none;
+	margin-top: 132px;
+}
+
+/* Pied de page */
+footer
+{
+	width: 100%;
+	bottom: 0;
+	background-color: #5fbae5;
+	height: 80px;
+	text-align: center;
+}
+
+footer p
+{
+	padding-top:31px;
+}
