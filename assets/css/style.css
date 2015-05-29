@@ -31,6 +31,14 @@ textarea
 	min-height: 100%;
 }
 
+article, aside
+{
+	display: inline-block;
+	margin-top: 25px;
+	padding: 5px;
+	background-color: #9ecaf4;
+}
+
 /* En tete */
 header
 {
@@ -302,14 +310,6 @@ nav ul
 }
 
 /* Corps */
-article, aside
-{
-	display: inline-block;
-	margin-top: 25px;
-	padding: 5px;
-	background-color: #9ecaf4;
-}
-
 article
 {
 	text-align: justify;
