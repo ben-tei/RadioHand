@@ -39,7 +39,7 @@ class Welcome extends CI_Controller
 				redirect('', 'refresh');
 			}
 		}
-		else if(isset($_GET['pseudo']) && isset($_GET['cle']) && !empty($_GET['pseudo']) && !empty($_GET['cle'])) // activation du compte via le lien présent dans le mail
+		else if(isset($_GET['pseudo']) && isset($_GET['cle']) && !empty($_GET['pseudo']) && !empty($_GET['cle'])) /* activation du compte via le lien présent dans le mail */
 		{
 			if($_GET['cle'] == $this->membre->getCleByPseudo($_GET['pseudo']))
 			{
@@ -65,7 +65,7 @@ class Welcome extends CI_Controller
 		}
 	}
 
-	public function notFound() // error 404
+	public function notFound() /* error 404 */
 	{
 		if(isset($_COOKIE['souvenir'])) /* check la validité du cookie */
 		{

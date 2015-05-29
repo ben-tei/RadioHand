@@ -22,7 +22,7 @@ class Catalogue extends CI_Controller
 			{
 				$membre = $this->membre->getMembreByCookie($user);
 
-				if($membre)	/* si le membre est authentifié */
+				if($membre) /* si le membre est authentifié */
 				{
 					if($time != '0')
 					{
@@ -32,7 +32,7 @@ class Catalogue extends CI_Controller
 					$data['membre'] = $membre;
 				}
 			}
-			if(!$toutEstLa || !$membre)	/* si les infos sont pas bonnes, on détruit le cookie et redirige vers l'accueil */
+			if(!$toutEstLa || !$membre) /* si les infos sont pas bonnes, on détruit le cookie et redirige vers l'accueil */
 			{
 				delete_cookie('souvenir');
 				redirect('', 'refresh');
@@ -41,7 +41,7 @@ class Catalogue extends CI_Controller
 
 		$config = array();
 
-		$config['base_url'] = base_url() . "catalogue/index";	/* CodeIgniter Pagination */
+		$config['base_url'] = base_url() . "catalogue/index"; /* CodeIgniter Pagination */
 		$config['total_rows'] = $this->produit->record_count();
 		$config['per_page'] = 2;
 		$choice = $config["total_rows"] / $config["per_page"];
@@ -53,7 +53,7 @@ class Catalogue extends CI_Controller
 
 		$data['pages'] = $this->pagination->create_links();
 
-		$this->load->view('viewCatalogue.php', $data);	/* on charge la vue */
+		$this->load->view('viewCatalogue.php', $data); /* on charge la vue */
 	}
 
 	public function getProduit()

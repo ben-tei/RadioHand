@@ -10,7 +10,7 @@ class MonPanier extends CI_Controller
 
 	public function index()
 	{
-		if(isset($_COOKIE['souvenir']))	/* check la validité du cookie */
+		if(isset($_COOKIE['souvenir'])) /* check la validité du cookie */
 		{
 			list($user, $time) = explode(':', $_COOKIE['souvenir']);
 
@@ -20,7 +20,7 @@ class MonPanier extends CI_Controller
 			{
 				$membre = $this->membre->getMembreByCookie($user);
 
-				if($membre)	/* si le membre est authentifié */
+				if($membre) /* si le membre est authentifié */
 				{
 					$data = array();
 
@@ -44,7 +44,7 @@ class MonPanier extends CI_Controller
 					$this->load->view('viewPanierAvecJS.php', $data);
 				}
 			}
-			if(!$toutEstLa || !$membre)	/* si les infos sont pas bonnes, on détruit le cookie et redirige vers l'accueil */
+			if(!$toutEstLa || !$membre) /* si les infos sont pas bonnes, on détruit le cookie et redirige vers l'accueil */
 			{
 				delete_cookie('souvenir');
 				redirect('', 'refresh');
@@ -56,9 +56,9 @@ class MonPanier extends CI_Controller
 		}
 	}
 	
-	public function noJS()	// est appelée à la place de index() lorsque JavaScript est désactivé
+	public function noJS() /* est appelée à la place de index() lorsque JavaScript est désactivé */
 	{
-		if(isset($_COOKIE['souvenir']))	/* check la validité du cookie */
+		if(isset($_COOKIE['souvenir'])) /* check la validité du cookie */
 		{
 			list($user, $time) = explode(':', $_COOKIE['souvenir']);
 
@@ -68,7 +68,7 @@ class MonPanier extends CI_Controller
 			{
 				$membre = $this->membre->getMembreByCookie($user);
 
-				if($membre)	/* si le membre est authentifié */
+				if($membre) /* si le membre est authentifié */
 				{
 					$data = array();
 
@@ -92,7 +92,7 @@ class MonPanier extends CI_Controller
 					$this->load->view('viewPanierSansJS.php', $data);
 				}
 			}
-			if(!$toutEstLa || !$membre)	/* si les infos sont pas bonnes, on détruit le cookie et redirige vers l'accueil */
+			if(!$toutEstLa || !$membre) /* si les infos sont pas bonnes, on détruit le cookie et redirige vers l'accueil */
 			{
 				delete_cookie('souvenir');
 				redirect('', 'refresh');
@@ -108,41 +108,41 @@ class MonPanier extends CI_Controller
 	{
 		if($this->input->post('submitPanier'))
 		{
-			if(ctype_digit($_POST['quantite']) && intval($_POST['quantite']) > 0)	// si la quantité est un entier positif
+			if(ctype_digit($_POST['quantite']) && intval($_POST['quantite']) > 0) /* si la quantité est un entier positif */
 			{
-				foreach($_POST as $p)	/* validation de formulaire */
+				foreach($_POST as $p) /* validation de formulaire */
 				{
 					$this->form_validation->set_rules($p, ucfirst($p), 'trim|encode_php_tags|xss_clean');
 				}
 
-				if($this->form_validation->run() && $this->membre->getMembreByPseudo($_POST['pseudoMembre']) && $this->produit->getProduitById($_POST['idProduit']))	// si le formulaire est valide et que le membre et le produit existent
+				if($this->form_validation->run() && $this->membre->getMembreByPseudo($_POST['pseudoMembre']) && $this->produit->getProduitById($_POST['idProduit'])) /* si le formulaire est valide et que le membre et le produit existent */
 				{
-					if($_POST['quantite'] <= $this->produit->getQteProduitById($_POST['idProduit']))	// si la quantité demandée est inférieur à la quantité en stock
+					if($_POST['quantite'] <= $this->produit->getQteProduitById($_POST['idProduit'])) /* si la quantité demandée est inférieur à la quantité en stock */
 					{
 						$alreadyCreated = $this->lignepanier->getLignePanierByUserAndProduit($_POST['pseudoMembre'], $_POST['idProduit']);
 
 						if(!$alreadyCreated)
 						{
-							$this->lignepanier->addLignePanier($_POST['pseudoMembre'], $_POST['idProduit'], $_POST['quantite']);	// si la ligne n'existe pas, on l'ajoute
+							$this->lignepanier->addLignePanier($_POST['pseudoMembre'], $_POST['idProduit'], $_POST['quantite']); /* si la ligne n'existe pas, on l'ajoute */
 						}
 						else
 						{
-							$this->lignepanier->addQteToLignePanier($_POST['pseudoMembre'], $_POST['idProduit'], $_POST['quantite']);	// si la ligne existe, on modifie sa quantité
+							$this->lignepanier->addQteToLignePanier($_POST['pseudoMembre'], $_POST['idProduit'], $_POST['quantite']); /* si la ligne existe, on modifie sa quantité */
 						}
 
 						redirect('monpanier', 'refresh');
 					}
 					else
 					{
-						redirect($_SERVER['HTTP_REFERER'], 'refresh');	// si la quantité demandée est supérieur à la quantité en stock, on actualise la page
+						redirect($_SERVER['HTTP_REFERER'], 'refresh'); /* si la quantité demandée est supérieur à la quantité en stock, on actualise la page */
 					}
 				}
-				else	// si le formulaire n'est pas valide, on actualise la page
+				else /* si le formulaire n'est pas valide, on actualise la page */
 				{
 					redirect($_SERVER['HTTP_REFERER'], 'refresh');
 				}
 			}
-			else	// si la quantité n'est pas un entier positif
+			else /* si la quantité n'est pas un entier positif */
 			{
 				redirect($_SERVER['HTTP_REFERER'], 'refresh');
 			}
@@ -157,21 +157,21 @@ class MonPanier extends CI_Controller
 	{
 		if(isset($_POST['submitSuppression']))
 		{
-			foreach($_POST as $p)	/* validation de formulaire */
+			foreach($_POST as $p) /* validation de formulaire */
 			{
 				$this->form_validation->set_rules($p, ucfirst($p), 'trim|encode_php_tags|xss_clean');
 			}
 
-			if($this->form_validation->run() && $this->membre->getMembreByPseudo($_POST['pseudoMembre']) && $this->produit->getProduitById($_POST['idProduit']))	// si le formulaire est valide et que le membre et le produit existent
+			if($this->form_validation->run() && $this->membre->getMembreByPseudo($_POST['pseudoMembre']) && $this->produit->getProduitById($_POST['idProduit'])) /* si le formulaire est valide et que le membre et le produit existent */
 			{
 				$qteActuelleLignePanier = $this->lignepanier->getQteLigneByProduitAndUser($_POST['pseudoMembre'], $_POST['idProduit']);
 				
-				if($qteActuelleLignePanier)	// s'il existe bien une quantité
+				if($qteActuelleLignePanier) /* s'il existe bien une quantité */
 				{
-					$this->lignepanier->delLigne($_POST['pseudoMembre'], $_POST['idProduit']);	// on supprime la ligne panier
-					$this->produit->addQteToProduit($_POST['idProduit'], $qteActuelleLignePanier);	// on augmente le stock du produit en question
+					$this->lignepanier->delLigne($_POST['pseudoMembre'], $_POST['idProduit']); /* on supprime la ligne panier */
+					$this->produit->addQteToProduit($_POST['idProduit'], $qteActuelleLignePanier); /* on augmente le stock du produit en question */
 					
-					if(isset($_POST['sousTotChaqueLigne']))	// si tableau JavaScript il y a
+					if(isset($_POST['sousTotChaqueLigne'])) /* si tableau JavaScript il y a */
 					{
 						$sousTotChaqueLigne = explode(",", $_POST['sousTotChaqueLigne']);
 						$i = 0;
@@ -209,16 +209,16 @@ class MonPanier extends CI_Controller
 	{
 		if(isset($_POST['qtePanier']))
 		{
-			if(ctype_digit($_POST['qtePanier']) && intval($_POST['qtePanier']) > 0)	// si la quantité est un entier positif
+			if(ctype_digit($_POST['qtePanier']) && intval($_POST['qtePanier']) > 0) /* si la quantité est un entier positif */
 			{
-				foreach($_POST as $p)	/* validation de formulaire */
+				foreach($_POST as $p) /* validation de formulaire */
 				{
 					$this->form_validation->set_rules($p, ucfirst($p), 'trim|encode_php_tags|xss_clean');
 				}
 
-				if($this->form_validation->run() && $this->membre->getMembreByPseudo($_POST['pseudoMembre']) && $this->produit->getProduitById($_POST['idProduit']))	// si le formulaire est valide et que le membre et le produit existent
+				if($this->form_validation->run() && $this->membre->getMembreByPseudo($_POST['pseudoMembre']) && $this->produit->getProduitById($_POST['idProduit'])) /* si le formulaire est valide et que le membre et le produit existent */
 				{
-					if(isset($_POST['sousTotChaqueLigne']))	// si tableau JavaScript il y a
+					if(isset($_POST['sousTotChaqueLigne'])) /* si tableau JavaScript il y a */
 					{
 						$sousTotChaqueLigne = explode(",", $_POST['sousTotChaqueLigne']);
 						$i = 0;
@@ -231,18 +231,18 @@ class MonPanier extends CI_Controller
 						
 						$qteActuelleLignePanier = $this->lignepanier->getQteLigneByProduitAndUser($_POST['pseudoMembre'], $_POST['idProduit']);
 						
-						if($qteActuelleLignePanier)	// s'il existe bien une quantité
+						if($qteActuelleLignePanier) /* s'il existe bien une quantité */
 						{
-							if(intval($_POST['qtePanier']) - intval($qteActuelleLignePanier) > $this->produit->getQteProduitById($_POST['idProduit']))	// si la quantité demandée est supérieur à la quantité en stock, on actualise la page
+							if(intval($_POST['qtePanier']) - intval($qteActuelleLignePanier) > $this->produit->getQteProduitById($_POST['idProduit'])) /* si la quantité demandée est supérieur à la quantité en stock, on actualise la page */
 							{
 								header('Content-Type: application/x-json; charset=utf-8');
 								echo(json_encode('Plus assez en stock'));
 							}
-							else	// si la quantité demandée est inférieur à la quantité en stock
+							else /* si la quantité demandée est inférieur à la quantité en stock */
 							{
 								$this->lignepanier->updateLignePanier($_POST['pseudoMembre'], $_POST['idProduit'], $_POST['qtePanier']);
 								header('Content-Type: application/x-json; charset=utf-8');
-								echo(json_encode(array(intval($_POST['qtePanier']) * intval($_POST['prixProduit']), $nouveauTotal)));	// on renvoie le nouveau sous total de la ligne ainsi que le nouveau total de la commande
+								echo(json_encode(array(intval($_POST['qtePanier']) * intval($_POST['prixProduit']), $nouveauTotal))); /* on renvoie le nouveau sous total de la ligne ainsi que le nouveau total de la commande */
 							}
 						}
 						else
@@ -254,9 +254,9 @@ class MonPanier extends CI_Controller
 					{
 						$qteActuelleLignePanier = $this->lignepanier->getQteLigneByProduitAndUser($_POST['pseudoMembre'], $_POST['idProduit']);
 						
-						if($qteActuelleLignePanier)	// s'il existe bien une quantité
+						if($qteActuelleLignePanier) /* s'il existe bien une quantité */
 						{
-							if(intval($_POST['qtePanier']) - intval($qteActuelleLignePanier) <= $this->produit->getQteProduitById($_POST['idProduit']))	// si la quantité demandée est inférieur à la quantité en stock
+							if(intval($_POST['qtePanier']) - intval($qteActuelleLignePanier) <= $this->produit->getQteProduitById($_POST['idProduit'])) /* si la quantité demandée est inférieur à la quantité en stock */
 							{
 								$this->lignepanier->updateLignePanier($_POST['pseudoMembre'], $_POST['idProduit'], $_POST['qtePanier']);
 							}
@@ -265,12 +265,12 @@ class MonPanier extends CI_Controller
 						redirect('monpanier', 'refresh');
 					}
 				}
-				else	// si le formulaire n'est pas valide, on actualise la page
+				else /* si le formulaire n'est pas valide, on actualise la page */
 				{
 					redirect('monpanier', 'refresh');
 				}
 			}
-			else	// si la quantité n'est pas un entier positif
+			else /* si la quantité n'est pas un entier positif */
 			{
 				redirect('monpanier', 'refresh');
 			}

@@ -10,7 +10,7 @@ class MesCommandes extends CI_Controller
 
 	public function index()
 	{		
-		if(isset($_COOKIE['souvenir']))	/* check la validité du cookie */
+		if(isset($_COOKIE['souvenir'])) /* check la validité du cookie */
 		{
 			list($user, $time) = explode(':', $_COOKIE['souvenir']);
 
@@ -20,7 +20,7 @@ class MesCommandes extends CI_Controller
 			{
 				$membre = $this->membre->getMembreByCookie($user);
 
-				if($membre)	/* si le membre est authentifié */
+				if($membre) /* si le membre est authentifié */
 				{
 					$data = array();
 
@@ -37,10 +37,10 @@ class MesCommandes extends CI_Controller
 						$data['montant'][$i] = $this->lignecommande->getMontantByIdCommande($commande->idCommande);
 						$i++;
 					endforeach;
-					$this->load->view('viewCommandes.php', $data);	/* on charge la vue avec les commandes */
+					$this->load->view('viewCommandes.php', $data); /* on charge la vue avec les commandes */
 				}
 			}
-			if(!$toutEstLa || !$membre)	/* si les infos sont pas bonnes, on détruit le cookie et redirige vers l'accueil */
+			if(!$toutEstLa || !$membre) /* si les infos sont pas bonnes, on détruit le cookie et redirige vers l'accueil */
 			{
 				delete_cookie('souvenir');
 				redirect('', 'refresh');
@@ -56,16 +56,16 @@ class MesCommandes extends CI_Controller
 	{
 		if($this->input->post('submitCommande'))
 		{
-			foreach($_POST as $p)	/* validation de formulaire */
+			foreach($_POST as $p) /* validation de formulaire */
 			{
 				$this->form_validation->set_rules($p, ucfirst($p), 'trim|encode_php_tags|xss_clean');
 			}
 
-			if($this->form_validation->run() && $this->membre->getMembreByPseudo($_POST['pseudoMembre']))	// si le formulaire est valide et que le membre existe
+			if($this->form_validation->run() && $this->membre->getMembreByPseudo($_POST['pseudoMembre'])) /* si le formulaire est valide et que le membre existe */
 			{
 				$panier = $this->lignepanier->getLignePanierByUser($_POST['pseudoMembre']);
 				
-				if(count($panier) > 0)	// si des lignes panier existent
+				if(count($panier) > 0) /* si des lignes panier existent */
 				{
 					$idCommande = $this->commande->addCommande($_POST['pseudoMembre']);
 					$i = 0;
@@ -83,7 +83,7 @@ class MesCommandes extends CI_Controller
 					redirect('monpanier', 'refresh');
 				}
 			}
-			else	// si le formulaire n'est pas valide, on redirige sur le panier
+			else /* si le formulaire n'est pas valide, on redirige sur le panier */
 			{
 				redirect('monpanier', 'refresh');
 			}
@@ -96,7 +96,7 @@ class MesCommandes extends CI_Controller
 
 	public function confirmationCommande()
 	{
-		if(isset($_COOKIE['souvenir']))	/* check la validité du cookie */
+		if(isset($_COOKIE['souvenir'])) /* check la validité du cookie */
 		{
 			list($user, $time) = explode(':', $_COOKIE['souvenir']);
 
@@ -106,7 +106,7 @@ class MesCommandes extends CI_Controller
 			{
 				$membre = $this->membre->getMembreByCookie($user);
 
-				if($membre)	/* si le membre est authentifié */
+				if($membre) /* si le membre est authentifié */
 				{
 					$data = array();
 
@@ -118,14 +118,14 @@ class MesCommandes extends CI_Controller
 					$data['membre'] = $membre;
 				}
 			}
-			if(!$toutEstLa || !$membre)	/* si les infos sont pas bonnes, on détruit le cookie et redirige vers l'accueil */
+			if(!$toutEstLa || !$membre) /* si les infos sont pas bonnes, on détruit le cookie et redirige vers l'accueil */
 			{
 				delete_cookie('souvenir');
 				redirect('', 'refresh');
 			}
 		}
 
-		if(isset($_COOKIE['confirmation']))	/* si l'utilisateur vient de confirmer sa commande */
+		if(isset($_COOKIE['confirmation'])) /* si l'utilisateur vient de confirmer sa commande */
 		{
 			delete_cookie('confirmation');			
 			$this->load->view('viewConfirmationCommande.php', $data);

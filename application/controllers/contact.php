@@ -10,7 +10,7 @@ class Contact extends CI_Controller
 
 	public function index()
 	{		
-		if(isset($_COOKIE['souvenir']))	/* check la validité du cookie */
+		if(isset($_COOKIE['souvenir'])) /* check la validité du cookie */
 		{
 			list($user, $time) = explode(':', $_COOKIE['souvenir']);
 
@@ -20,7 +20,7 @@ class Contact extends CI_Controller
 			{
 				$membre = $this->membre->getMembreByCookie($user);
 
-				if($membre)	/* si le membre est authentifié */
+				if($membre) /* si le membre est authentifié */
 				{
 					$data = array();
 
@@ -30,7 +30,7 @@ class Contact extends CI_Controller
 					}
 					setcookie('souvenir', $user . ':' . $time, intval($time), '/', null, false, true);
 					$data['membre'] = $membre;
-					$this->load->view('viewContact.php', $data);	/* on charge la vue */
+					$this->load->view('viewContact.php', $data); /* on charge la vue */
 				}
 			}
 			if(!$toutEstLa || !$membre)	/* si les infos sont pas bonnes, on détruit le cookie et redirige vers l'accueil */
@@ -51,7 +51,7 @@ class Contact extends CI_Controller
 		{
 			$allFilled = true;
 			
-			foreach($_POST as $p)	/* validation de formulaire */
+			foreach($_POST as $p) /* validation de formulaire */
 			{
 				$this->form_validation->set_rules($p, ucfirst($p), 'trim|encode_php_tags|xss_clean');
 				if(empty($p))
@@ -60,15 +60,15 @@ class Contact extends CI_Controller
 				}
 			}
 
-			if($this->form_validation->run())	// si le formulaire est valide
+			if($this->form_validation->run()) /* si le formulaire est valide */
 			{
 				$data = array();
 				
 				if($allFilled)
 				{
-					if(filter_var($_POST['email'], FILTER_VALIDATE_EMAIL))	// on vérifie le format de l'adresse email
+					if(filter_var($_POST['email'], FILTER_VALIDATE_EMAIL)) /* on vérifie le format de l'adresse email */
 					{
-						$this->mail->send($_POST['email'], 'radiohand@yopmail.com', $_POST['sujet'], $_POST['message']);	/* envoi du mail */
+						$this->mail->send($_POST['email'], 'radiohand@yopmail.com', $_POST['sujet'], $_POST['message']); /* envoi du mail */
 
 						setcookie('mail', 'jenesaispasquoimettre', 0, '/', null, false, true);
 						redirect('contact/mailEnvoye', 'refresh');
@@ -84,7 +84,7 @@ class Contact extends CI_Controller
 				}
 				$this->load->view('viewContact.php', $data);
 			}
-			else	// si le formulaire n'est pas valide, on actualise la page
+			else /* si le formulaire n'est pas valide, on actualise la page */
 			{
 				redirect('contact', 'refresh');
 			}
@@ -128,9 +128,9 @@ class Contact extends CI_Controller
 
 		if(isset($_COOKIE['mail']))	/* si l'utilisateur vient d'envoyer un mail */
 		{
-			delete_cookie('mail');	// on supprime le cookie
+			delete_cookie('mail'); /* on supprime le cookie */
 
-			if(isset($data['membre']))	// si le membre est connecté
+			if(isset($data['membre'])) /* si le membre est connecté */
 			{
 				$this->load->view('viewConfirmationMail.php', $data);
 			}
