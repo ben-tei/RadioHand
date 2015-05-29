@@ -2,15 +2,15 @@ body
 {
 	background-color: #9ecaf4;
 	margin: 0px;
-	height: 85%;
+	height: 100%;
 	font-family: "Lucida Grande", "Lucida Sans Unicode", "Trebuchet MS", sans-serif;
 	font-size: 14px;
 }
 
 html
 {
-	height: 82%;
-	min-width: 1080px;
+	height: 100%;
+	min-width: 100%;
 }
 
 form input[type=text], form input[type=email], form input[type=password]
