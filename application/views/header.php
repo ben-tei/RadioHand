@@ -9,7 +9,7 @@
 	</head>
 	<body>
 		<noscript>
-			<span style="background-color: red; display: block; text-align: center; font-weight: bold;">Votre navigateur ne supporte pas JavaScript !</span>
+			<span style="background-color: red; display: block; text-align: center; font-weight: bold; font-size: 16px; padding: 1px;">Votre navigateur ne supporte pas JavaScript !</span>
 		</noscript>
 		<header>
 			<div class="contenu">
