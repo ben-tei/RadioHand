@@ -48,7 +48,7 @@
 $active_group = 'default';
 $active_record = TRUE;
 
-$db['default']['hostname'] = '127.8.13.2';
+$db['default']['hostname'] = 'host';
 $db['default']['username'] = 'login';
 $db['default']['password'] = 'mdp';
 $db['default']['database'] = 'php';
