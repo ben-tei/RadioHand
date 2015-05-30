@@ -319,9 +319,8 @@ article
 aside
 {
 	text-align: center;
-	margin-top: 75px;
 	background-color: #9cd4ef;
-	position: absolute;
+	position: fixed;
 	margin-left: 75px;
 	width: 215px;
 	border: black thin dashed;
