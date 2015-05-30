@@ -33,7 +33,7 @@ textarea
 
 article, aside
 {
-	display: inline-table;
+	display: inline-block;
 	margin-top: 25px;
 	padding: 5px;
 	background-color: #9ecaf4;
