@@ -76,29 +76,36 @@ class Inscription extends CI_Controller
 									{
 										if(preg_match('#^[a-z0-9]+$#i', $_POST['pseudo']) && preg_match('#^[a-z0-9]+$#i', $_POST['mdp']) && preg_match('#^[a-z0-9]+$#i', $_POST['mdp2'])) /* on vérifie si les champs contiennent des caractères spéciaux */
 										{
-											$cle = sha1(microtime(TRUE)*100000); /*  Génération aléatoire d'une clé */
-											$alreadyCreated = $this->membre->addMembre($_POST['pseudo'], sha1($_POST['mdp']), $_POST['email'], $_POST['nom'], $_POST['prenom'], $_POST['adresse'], $_POST['codep'], $_POST['ville'], $cle);
-
-											if(!$alreadyCreated)
+											if(!preg_match('#[0-9]#', $_POST['prenom']) && !preg_match('#[0-9]#', $_POST['nom'])) /* on vérifie que le nom et prénom ne contiennent pas de chiffres */
 											{
-												header('Content-Type: application/x-json; charset=utf-8');
-												echo(json_encode("Pseudo déjà utilisé !"));
+												$cle = sha1(microtime(TRUE)*100000); /*  Génération aléatoire d'une clé */
+												$alreadyCreated = $this->membre->addMembre($_POST['pseudo'], sha1($_POST['mdp']), $_POST['email'], $_POST['nom'], $_POST['prenom'], $_POST['adresse'], $_POST['codep'], $_POST['ville'], $cle);
+
+												if(!$alreadyCreated)
+												{
+													header('Content-Type: application/x-json; charset=utf-8');
+													echo(json_encode("Pseudo déjà utilisé !"));
+												}
+												else
+												{
+													$sujet = "Activer votre compte" ;
+
+													$message = 'Bienvenue sur RadioHand,
+
+													Pour activer votre compte, veuillez cliquer sur le lien ci dessous.
+
+													http://php-radiohand.rhcloud.com/?pseudo=' . urlencode($_POST['pseudo']) . '&cle=' . urlencode($cle) . '';
+
+													$this->mail->send('radiohand@yopmail.com', $_POST['email'], $sujet, $message); /* envoi du mail */
+
+													setcookie('success', 'jenesaispasquoimettre', 0, '/', null, false, true);
+													
+													redirect('inscription/success', 'refresh');
+												}
 											}
 											else
 											{
-												$sujet = "Activer votre compte" ;
-
-												$message = 'Bienvenue sur RadioHand,
-
-												Pour activer votre compte, veuillez cliquer sur le lien ci dessous.
-
-												http://php-radiohand.rhcloud.com/?pseudo=' . urlencode($_POST['pseudo']) . '&cle=' . urlencode($cle) . '';
-
-												$this->mail->send('radiohand@yopmail.com', $_POST['email'], $sujet, $message); /* envoi du mail */
-
-												setcookie('success', 'jenesaispasquoimettre', 0, '/', null, false, true);
-												
-												redirect('inscription/success', 'refresh');
+												$data['message'] = "Votre prénom ou nom contient des chiffres !";
 											}
 										}
 										else

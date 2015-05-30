@@ -122,8 +122,11 @@ class MonEspace extends CI_Controller
 					{
 						if(strlen($_POST['codep']) == 5 && ctype_digit($_POST['codep'])) /* on vérifie le format du code postal */
 						{
-							$this->membre->updateMembre($_POST['pseudoMembre'], $_POST['email'], $_POST['nom'], $_POST['prenom'], $_POST['adresse'], $_POST['codep'],
-								$_POST['ville']);
+							if(!preg_match('#[0-9]#', $_POST['prenom']) && !preg_match('#[0-9]#', $_POST['nom'])) /* on vérifie que le nom et prénom ne contiennent pas de chiffres */
+							{
+								$this->membre->updateMembre($_POST['pseudoMembre'], $_POST['email'], $_POST['nom'], $_POST['prenom'], $_POST['adresse'], $_POST['codep'],
+									$_POST['ville']);
+							}
 						}
 					}
 				}

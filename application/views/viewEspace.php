@@ -38,6 +38,16 @@
 						alert("Adresse email invalide !");
 						return false;
 					}
+					else if(/\d/.test($('#nom').val()))
+					{
+						alert("Votre nom contient des chiffres !");
+						return false;
+					}
+					else if(/\d/.test($('#prenom').val()))
+					{
+						alert("Votre prénom contient des chiffres !");
+						return false;
+					}
 				});
 			});
 		</script>
