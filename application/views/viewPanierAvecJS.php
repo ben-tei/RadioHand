@@ -45,7 +45,7 @@
 
 						$i++;
 					}
-					echo '<div id="divValeurTotal">' . '<p class = "total" ><br>Total : ' . $total . ' €</p></div>'; /* affiche le total de la commande */ ?>
+					echo '<div id="divTotalPanier">' . '<p class = "total" ><br>Total : ' . $total . ' €</p></div>'; /* affiche le total de la commande */ ?>
 				</article> <?php
 				if($i != 0) /* s'il existe des lignes panier */
 				{ ?>
@@ -61,7 +61,7 @@
 		<?php include("footer.html"); ?>
 
 		<script>			
-			var sousTotalChaqueLigne = new Array(); /* on stocke le total de chaque ligne dans un tableau javascript pour changer dynamiquement le panier */
+			var totalChaqueLigne = new Array(); /* on stocke le total de chaque ligne dans un tableau javascript pour changer dynamiquement le panier */
 			<?php if(isset($produits) && $produits != null) {
 				$tab = array();
 				$i = 0;
@@ -71,7 +71,7 @@
 					$i++;
 				}
 				$tab = json_encode($tab); ?>
-				sousTotalChaqueLigne= <?=$tab?>; <?php
+				totalChaqueLigne= <?=$tab?>; <?php
 			} ?>
 
 			$(document).ready(function () {
@@ -94,9 +94,9 @@
 						data.push({'name': name, 'value': value});
 					});
 
-					sousTotalChaqueLigne.splice(data[0].value, 1, 0); /* on remplace le total de la ligne en question par 0 */
+					totalChaqueLigne.splice(data[0].value, 1, 0); /* on remplace le total de la ligne en question par 0 */
 
-					data.push({'name': 'sousTotChaqueLigne', 'value': sousTotalChaqueLigne});
+					data.push({'name': 'totChaqueLigne', 'value': totalChaqueLigne});
 
 					$.ajax({
 						url: url,
@@ -104,8 +104,8 @@
 						data: data,
 						success: function(response) {
 							$('#div' + data[0].value).empty(); /* on vide la div de la ligne en question */
-							$('#divValeurTotal').empty(); /* on vide la div du total pour le remplacer par le nouveau */
-							document.getElementById('divValeurTotal').innerHTML += '<p class = "total" ><br>Total : ' + response + ' €</p>';
+							$('#divTotalPanier').empty(); /* on vide la div du total du panier pour le remplacer par le nouveau */
+							document.getElementById('divTotalPanier').innerHTML += '<p class = "total" ><br>Total : ' + response + ' €</p>';
 							if(response == 0) /* s'il n'existe plus de lignes panier, on cache le boutton de confirmation de la commande */
 							{
 								document.getElementById("asideBton").style.display = "none";
@@ -120,14 +120,14 @@
 
 					var url = "<?php echo site_url(); ?>monpanier/updateLigne";
 
-					sousTotalChaqueLigne.splice(this.id.split("+")[2], 1, parseInt(this.value) * parseInt(this.id.split("+")[1])); /* on remplace le total de la ligne en question par la nouvelle quantité * le prix du produit */
+					totalChaqueLigne.splice(this.id.split("+")[2], 1, parseInt(this.value) * parseInt(this.id.split("+")[1])); /* on remplace le total de la ligne en question par la nouvelle quantité * le prix du produit */
 
 					data.push({'name': 'qtePanier', 'value': this.value});
 					data.push({'name': 'idProduit', 'value': this.id.split("+")[0]});
 					data.push({'name': 'prixProduit', 'value': this.id.split("+")[1]});
 					data.push({'name': 'divPrix', 'value': this.id.split("+")[2]});
 					data.push({'name': 'pseudoMembre', 'value': this.id.split("+")[3]});
-					data.push({'name': 'sousTotChaqueLigne', 'value': sousTotalChaqueLigne});
+					data.push({'name': 'totChaqueLigne', 'value': totalChaqueLigne});
 
 					$.ajax({
 						url: url,
@@ -142,8 +142,8 @@
 							{
 								$('#prix' + data[3].value).empty(); /* on vide la div du total de la ligne modifiée pour y mettre le nouveau */
 								document.getElementById('prix' + data[3].value).innerHTML += 'Sous-total : ' + response[0] + ' €';
-								$('#divValeurTotal').empty(); /* on vide la div du total pour y mettre le nouveau */
-								document.getElementById('divValeurTotal').innerHTML += '<p class = "total" ><br>Total : ' + response[1] + ' €</p>';
+								$('#divTotalPanier').empty(); /* on vide la div du total du panier pour y mettre le nouveau */
+								document.getElementById('divTotalPanier').innerHTML += '<p class = "total" ><br>Total : ' + response[1] + ' €</p>';
 							}
 							data = new Array();
 						}

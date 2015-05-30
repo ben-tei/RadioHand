@@ -171,14 +171,14 @@ class MonPanier extends CI_Controller
 					$this->lignepanier->delLigne($_POST['pseudoMembre'], $_POST['idProduit']); /* on supprime la ligne panier */
 					$this->produit->addQteToProduit($_POST['idProduit'], $qteActuelleLignePanier); /* on augmente le stock du produit en question */
 					
-					if(isset($_POST['sousTotChaqueLigne'])) /* si tableau JavaScript il y a */
+					if(isset($_POST['totChaqueLigne'])) /* si tableau JavaScript il y a */
 					{
-						$sousTotChaqueLigne = explode(",", $_POST['sousTotChaqueLigne']);
+						$totChaqueLigne = explode(",", $_POST['totChaqueLigne']);
 						$i = 0;
 						$nouveauTotal = 0;
-						while($i < count($sousTotChaqueLigne))
+						while($i < count($totChaqueLigne))
 						{
-							$nouveauTotal = $nouveauTotal + intval($sousTotChaqueLigne[$i]);
+							$nouveauTotal = $nouveauTotal + intval($totChaqueLigne[$i]);
 							$i++;
 						}
 						header('Content-Type: application/x-json; charset=utf-8');
@@ -218,14 +218,14 @@ class MonPanier extends CI_Controller
 
 				if($this->form_validation->run() && $this->membre->getMembreByPseudo($_POST['pseudoMembre']) && $this->produit->getProduitById($_POST['idProduit'])) /* si le formulaire est valide et que le membre et le produit existent */
 				{
-					if(isset($_POST['sousTotChaqueLigne'])) /* si tableau JavaScript il y a */
+					if(isset($_POST['totChaqueLigne'])) /* si tableau JavaScript il y a */
 					{
-						$sousTotChaqueLigne = explode(",", $_POST['sousTotChaqueLigne']);
+						$totChaqueLigne = explode(",", $_POST['totChaqueLigne']);
 						$i = 0;
 						$nouveauTotal = 0;
-						while($i < count($sousTotChaqueLigne))
+						while($i < count($totChaqueLigne))
 						{
-							$nouveauTotal = $nouveauTotal + intval($sousTotChaqueLigne[$i]);
+							$nouveauTotal = $nouveauTotal + intval($totChaqueLigne[$i]);
 							$i++;
 						}
 						

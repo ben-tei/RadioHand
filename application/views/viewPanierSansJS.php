@@ -33,7 +33,7 @@
 
 						$i++;
 					}
-					echo '<div id="divValeurTotal">' . '<p class = "total" ><br>Total : ' . $total . ' €</p></div>'; /* affiche le total de la commande */ ?>
+					echo '<div id="divTotalPanier">' . '<p class = "total" ><br>Total : ' . $total . ' €</p></div>'; /* affiche le total de la commande */ ?>
 				</article> <?php
 				if($i != 0) /* s'il existe des lignes panier */
 				{ ?>
