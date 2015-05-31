@@ -1,7 +1,10 @@
 		<?php include('header.php'); ?>
 		<div class="contenu">
 			<section>
-				<article>
+				<aside id="asideProduit">
+					<?php include("viewSearchForm.php"); ?>
+				</aside>
+				<article id="articleProduit">
 					<h1><?php echo $produit->libelleProduit; ?></h1>
 					<p><a href="<?php echo site_url(); ?>catalogue"><img src="<?php echo img_url('fleche.png')?>" id="fleche" border="0" alt="retour"></a></p>
 					<?php
@@ -27,7 +30,6 @@
 					<p>Description : <br> <?php echo $produit->descriptifProduit; ?></p>
 					<p>Aperçu : <br><img id="imgProduit" src="<?php echo img_url($produit->nomImage) ?>" width="300" border="0" alt="Image du gant"></p>
 				</article>
-				<?php include("viewSearchForm.php"); ?>
 			</section>
 		</div>
 		<?php include("footer.html"); ?>

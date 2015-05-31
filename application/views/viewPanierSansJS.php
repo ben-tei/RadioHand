@@ -1,7 +1,16 @@
 		<?php include('header.php'); ?>
 		<div class="contenu">
-			<section>
-				<article>
+			<section> <?php
+				if(count($panier) > 0) /* s'il existe des lignes panier */
+				{ ?>
+					<aside id="asideBton">
+						<form method="post" action="<?php echo site_url(); ?>mescommandes/createCommande" id="confirmCommande">
+							<input type="hidden" name="pseudoMembre" value="<?php echo $membre->pseudoMembre; ?>">
+							<input type="submit" name="submitCommande" value="Passer la commande" id="btonCommande">
+						</form>
+					</aside> <?php
+				} ?>
+				<article id="articlePanierNoJS">
 					<h1>Votre Panier</h1> <?php
 					$i = 0;
 					while($i < count($panier)) /* parcourt chacune des lignes du panier et affiche ses infos */
@@ -34,16 +43,7 @@
 						$i++;
 					}
 					echo '<div id="divTotalPanier">' . '<p class = "total" ><br>Total : ' . $total . ' €</p></div>'; /* affiche le total de la commande */ ?>
-				</article> <?php
-				if($i != 0) /* s'il existe des lignes panier */
-				{ ?>
-					<aside id="asideBton">
-						<form method="post" action="<?php echo site_url(); ?>mescommandes/createCommande" id="confirmCommande">
-							<input type="hidden" name="pseudoMembre" value="<?php echo $membre->pseudoMembre; ?>">
-							<input type="submit" name="submitCommande" value="Passer la commande" id="btonCommande">
-						</form>
-					</aside> <?php
-				} ?>
+				</article>
 			</section>
 		</div>
 		<?php include("footer.html"); ?>

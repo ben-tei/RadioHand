@@ -1,7 +1,7 @@
 		<?php include('header.php'); ?>
 		<div class="contenu">
 			<section>
-				<article>
+				<article id="articleCommandes">
 					<h1>Vos Commandes</h1> <?php
 					$j = 0;
 					foreach($allCommandes as $commande):  /* parcourt chacune des commandes et affiche ses infos dans un tableau */ ?>
@@ -38,6 +38,5 @@
 			</section>
 		</div>
 		<?php include("footer.html"); ?>
-		<link rel="stylesheet" href="<?php echo css_url('table'); ?>">
 	</body>
 </html>

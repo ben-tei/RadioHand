@@ -13,7 +13,9 @@
 					endforeach; ?>
 					<span id="pagination"><?php echo $pages; ?></span> <!-- pagination -->
 				</article>
-				<?php include("viewSearchForm.php"); ?>
+				<aside>
+					<?php include("viewSearchForm.php"); ?>
+				</aside>
 			</section>
 		</div>
 		<?php include("footer.html"); ?>

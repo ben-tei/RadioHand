@@ -108,7 +108,7 @@ nav ul
 	font-size: 16px;
 }
 
-#asideAccueil
+#asideAccueil, #asideProduit, #asideBton
 {
 	text-align: center;
 	margin-top: 75px;
@@ -322,6 +322,23 @@ nav ul
 }
 
 /* Corps */
+
+#articleCommandes, #articleProduit, #articlePanierJS, #articlePanierNoJS
+{
+	text-align: justify;
+	width: 100%;
+}
+
+.tdTable img
+{
+	margin-top: 15px;
+}
+
+.tableCommandes
+{
+	margin-bottom: 30px;
+}
+
 article
 {
 	text-align: justify;
