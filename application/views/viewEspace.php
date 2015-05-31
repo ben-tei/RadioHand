@@ -28,19 +28,7 @@
 			var regEmail = new RegExp('^[0-9a-z._-]+@{1}[0-9a-z.-]{2,}[.]{1}[a-z]{2,5}$','i');
 			$(document).ready(function () {
 				$('form#formEspace').on('submit', function(e) {
-					var isValid = true;
-					$(':input').each(function() {
-						if ($(this).val() === '')
-						{
-							isValid = false;
-						}
-					});
-					if(!isValid)
-					{
-						alert("Tous les champs sont obligatoires !");
-						return false;
-					}
-					else if(isNaN($('#codep').val()) || $('#codep').val().length != 5)
+					if(isNaN($('#codep').val()) || $('#codep').val().length != 5)
 					{
 						alert("Le code postal est incorrect !");
 						return false;

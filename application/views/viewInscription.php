@@ -34,19 +34,7 @@
 			var regEmail = new RegExp('^[0-9a-z._-]+@{1}[0-9a-z.-]{2,}[.]{1}[a-z]{2,5}$','i');
 			$(document).ready(function () {
 				$('form#formInsc').on('submit', function(e) {
-					var isValid = true;
-					$(':input').each(function() {
-						if ($(this).val() === '')
-						{
-							isValid = false;
-						}
-					});
-					if(!isValid)
-					{
-						alert("Tous les champs sont obligatoires !");
-						return false;
-					}
-					else if(/^[a-zA-Z0-9]*$/.test($('#pseudo').val()) == false)
+					if(/^[a-zA-Z0-9]*$/.test($('#pseudo').val()) == false)
 					{
 						alert("Le pseudo contient des caractères spéciaux !");
 						return false;
