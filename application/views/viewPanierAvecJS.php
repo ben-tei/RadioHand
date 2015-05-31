@@ -34,7 +34,7 @@
 						</select> <?php
 						
 						echo '<div id="prix' . $i . '" style="display:inline-block; margin-left:5px;">',
-						'Sous-total : ' . $totauxLignes[$i]->soustotal . ' €</div>';
+						'Sous-total : ' . $totauxLignes[$i]->totalLigne . ' €</div>';
 
 						echo '<form method="post" action="' .  site_url()  . 'monpanier/deleteLigne/" class="supprPanier">
 						<input type="hidden" name="i" value="' . $i . '">
@@ -67,7 +67,7 @@
 				$i = 0;
 				while($i < count($produits))
 				{
-					$tab[] = $totauxLignes[$i]->soustotal;
+					$tab[] = $totauxLignes[$i]->totalLigne;
 					$i++;
 				}
 				$tab = json_encode($tab); ?>

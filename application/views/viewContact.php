@@ -20,7 +20,7 @@
 		<script type="text/javascript">
 			var regEmail = new RegExp('^[0-9a-z._-]+@{1}[0-9a-z.-]{2,}[.]{1}[a-z]{2,5}$','i');
 			$(document).ready(function () {
-				$('form#formContact').on('submit', function(e) { /* traitement du formulaire d'inscription en AJAX */
+				$('form#formContact').on('submit', function(e) {
 					if(!regEmail.test($('#email').val()))
 					{
 						alert("Adresse email invalide !");

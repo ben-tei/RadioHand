@@ -19,8 +19,8 @@
 
 				if(!isset($membre)) /* si l'utilisateur n'est pas connecté, on affiche le formulaire de connexion */
 				{ ?>
-					<form method="post" action="<?php echo site_url(); ?>monespace/connexion" id="formId" autocomplete="off">
-						<div id="Identification">
+					<div id="Identification">
+						<form method="post" action="<?php echo site_url(); ?>monespace/connexion" id="formId" autocomplete="off">
 							<p>
 								<input type="text" name="identifiant" id="identifiant" placeholder="Identifiant">
 								<input type="password" name="password" id="password" placeholder="Mot de passe">
@@ -30,9 +30,8 @@
 									Se souvenir de moi
 								</span>
 							</p>
-						</div>
-					</form>
-					<?php
+						</form>
+					</div> <?php
 				}
 				else /* si l'utilisateur est connecté */
 				{ ?>
@@ -60,7 +59,7 @@
 				<nav>
 					<ul>
 						<li>
-							<?php echo anchor('welcome', 'Accueil', array('class' => 'itemMenu')); ?>
+							<a href="http://php-radiohand.rhcloud.com/" class="itemMenu">Accueil</a>
 						</li> <?php
 						if(!isset($membre)) /* si l'utilisateur est connecté, on cache l'onglet Inscription */
 						{ ?>

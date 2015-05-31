@@ -10,32 +10,9 @@ class Inscription extends CI_Controller
 
 	public function index()
 	{		
-		if(isset($_COOKIE['souvenir'])) /* check la validité du cookie */
+		if(isset($_COOKIE['souvenir']))
 		{
-			list($user, $time) = explode(':', $_COOKIE['souvenir']);
-
-			$toutEstLa = isset($user) && !empty($user) && isset($time) && ctype_digit($time) && intval($time) >= 0;
-
-			if($toutEstLa)
-			{
-				$membre = $this->membre->getMembreByCookie($user);
-
-				if($membre) /* si le membre est authentifié */
-				{
-					if($time != '0')
-					{
-						$time = strval(time()+3600);
-					}
-					setcookie('souvenir', $user . ':' . $time, intval($time), '/', null, false, true);
-					
-					redirect('', 'refresh'); /* on redirige vers l'accueil car il est connecté */
-				}
-			}
-			if(!$toutEstLa || !$membre) /* si les infos sont pas bonnes, on détruit le cookie et redirige vers l'accueil */
-			{
-				delete_cookie('souvenir');
-				redirect('', 'refresh');
-			}
+			redirect('', 'refresh');
 		}
 		else
 		{
@@ -78,7 +55,7 @@ class Inscription extends CI_Controller
 										{
 											if(!preg_match('#[0-9]#', $_POST['prenom']) && !preg_match('#[0-9]#', $_POST['nom'])) /* on vérifie que le nom et prénom ne contiennent pas de chiffres */
 											{
-												$cle = sha1(microtime(TRUE)*100000); /*  Génération aléatoire d'une clé */
+												$cle = sha1(md5(uniqid(rand(), true))); /*  Génération aléatoire d'une clé */
 												$alreadyCreated = $this->membre->addMembre($_POST['pseudo'], sha1($_POST['mdp']), $_POST['email'], $_POST['nom'], $_POST['prenom'], $_POST['adresse'], $_POST['codep'], $_POST['ville'], $cle);
 
 												if(!$alreadyCreated)

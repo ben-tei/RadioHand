@@ -33,8 +33,20 @@
 		<script type="text/javascript">
 			var regEmail = new RegExp('^[0-9a-z._-]+@{1}[0-9a-z.-]{2,}[.]{1}[a-z]{2,5}$','i');
 			$(document).ready(function () {
-				$('form#formInsc').on('submit', function(e) { /* traitement du formulaire d'inscription en AJAX */
-					if(/^[a-zA-Z0-9]*$/.test($('#pseudo').val()) == false)
+				$('form#formInsc').on('submit', function(e) {
+					var isValid = true;
+					$(':input').each(function() {
+						if ($(this).val() === '')
+						{
+							isValid = false;
+						}
+					});
+					if(!isValid)
+					{
+						alert("Tous les champs sont obligatoires !");
+						return false;
+					}
+					else if(/^[a-zA-Z0-9]*$/.test($('#pseudo').val()) == false)
 					{
 						alert("Le pseudo contient des caractères spéciaux !");
 						return false;
@@ -89,6 +101,8 @@
 						alert("Le code postal est incorrect !");
 						return false;
 					}
+
+					return isValid;
 				});
 			});
 		</script>

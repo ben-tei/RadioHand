@@ -15,14 +15,14 @@
 						' Quantité : ';
 						/* l'utilisateur a la possibilité de diminuer ou augmenter la quantité */ ?>
 						<form method="post" action="<?php echo site_url(); ?>monpanier/updateLigne" autocomplete="off" class="ligneNoJS">
-							<input type="number" value="<?php echo $panier[$i]->qteProduit; ?>" min="1" max="<?php echo $qteMax[$i]; ?>" name="qtePanier">
+							<input type="number" value="<?php echo $panier[$i]->qteProduit; ?>" min="1" max="<?php echo $qteMax[$i]; ?>" name="qtePanier" required>
 							<input type="hidden" name="pseudoMembre" value="<?php echo $membre->pseudoMembre;?>">
 							<input type="hidden" name="idProduit" value="<?php echo $produits[$i]->idProduit;?>">
 							<input type="submit" name="submitPanierNoJS" style="display:none;">
 						</form> <?php
 						
 						echo '<div id="prix' . $i . '" style="display:inline-block; margin-left:5px;">',
-						'Sous-total : ' . $totauxLignes[$i]->soustotal . ' €</div>';
+						'Sous-total : ' . $totauxLignes[$i]->totalLigne . ' €</div>';
 
 						echo '<form method="post" action="' .  site_url()  . 'monpanier/deleteLigne/" class="supprPanier">
 						<input type="hidden" name="i" value="' . $i . '">

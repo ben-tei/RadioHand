@@ -107,11 +107,11 @@ class LignePanier extends CI_Model
 		}
 	}
 
-	public function getAllTotauxLignesByUser($pseudoMembre)
+	public function getTotauxAllLignesByUser($pseudoMembre)
 	{
 		if(isset($pseudoMembre) && !empty($pseudoMembre))
 		{
-			$query = $this->db->query('SELECT (l.qteProduit * p.prixProduit) as soustotal FROM lignepanier l, produit p WHERE pseudoMembre = "' . $pseudoMembre . '" AND l.idProduit = p.idProduit');
+			$query = $this->db->query('SELECT (l.qteProduit * p.prixProduit) as totalLigne FROM lignepanier l, produit p WHERE pseudoMembre = "' . $pseudoMembre . '" AND l.idProduit = p.idProduit');
 
 			return $query->result();
 		}

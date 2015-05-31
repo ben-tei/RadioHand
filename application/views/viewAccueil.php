@@ -1,6 +1,12 @@
 		<?php include('header.php'); ?>
 		<div class="contenu">
 			<section>
+				<aside id="asideAccueil">
+					<h1>À propos de nous</h1>
+					<p>RHCorp (RadioHand Corporation), entreprise française, implantée depuis 10 ans dans plusieurs pays.</p>
+					<h3>Notre philosophie ?</h3>
+					<p>Vouer nos aptitudes humaines et nos atouts technologiques à la conception de produits et de services de qualité pour favoriser un monde meilleur.</p>
+				</aside>
 				<article>
 					<?php
 					if(isset($message))
@@ -14,12 +20,6 @@
 					<p>Ingénieux, il s'agit donc d'un simple gant avec kit mains libres intégré qui va vous permettre d'écouter de la musique, de téléphoner ou encore de répondre aux appels par de simples contacts au bout des doigts.</p>
 					<br>
 				</article>
-				<aside>
-					<h1>À propos de nous</h1>
-					<p>RHCorp (RadioHand Corporation), entreprise française, implantée depuis 10 ans dans plusieurs pays.</p>
-					<h3>Notre philosophie ?</h3>
-					<p>Vouer nos aptitudes humaines et nos atouts technologiques à la conception de produits et de services de qualité pour favoriser un monde meilleur.</p>
-				</aside>
 			</section>
 		</div>
 		<?php include("footer.html"); ?>

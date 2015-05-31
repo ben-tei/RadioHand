@@ -33,7 +33,7 @@ class MonPanier extends CI_Controller
 					$data['produits'] = array();
 					$data['panier'] = $this->lignepanier->getLignePanierByUser($membre->pseudoMembre);
 					$data['total'] = $this->lignepanier->getTotalByUser($membre->pseudoMembre);
-					$data['totauxLignes'] = $this->lignepanier->getAllTotauxLignesByUser($membre->pseudoMembre);
+					$data['totauxLignes'] = $this->lignepanier->getTotauxAllLignesByUser($membre->pseudoMembre);
 					$i = 0;
 					while($i < count($data['panier']))
 					{
@@ -81,7 +81,7 @@ class MonPanier extends CI_Controller
 					$data['produits'] = array();
 					$data['panier'] = $this->lignepanier->getLignePanierByUser($membre->pseudoMembre);
 					$data['total'] = $this->lignepanier->getTotalByUser($membre->pseudoMembre);
-					$data['totauxLignes'] = $this->lignepanier->getAllTotauxLignesByUser($membre->pseudoMembre);
+					$data['totauxLignes'] = $this->lignepanier->getTotauxAllLignesByUser($membre->pseudoMembre);
 					$i = 0;
 					while($i < count($data['panier']))
 					{
