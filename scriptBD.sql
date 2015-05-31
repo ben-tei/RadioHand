@@ -123,8 +123,7 @@ CREATE TABLE IF NOT EXISTS `produit` (
   `libelleProduit` varchar(100) NOT NULL,
   `prixProduit` int(11) NOT NULL,
   `qteProduit` int(11) NOT NULL,
-  `matiereProduit` varchar(100) NOT NULL,
-  `descriptifProduit` varchar(100) NOT NULL,
+  `descriptifProduit` varchar(255) NOT NULL,
   `nomImage` varchar(100) NOT NULL,
   PRIMARY KEY (`idProduit`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
@@ -133,11 +132,16 @@ CREATE TABLE IF NOT EXISTS `produit` (
 -- Contenu de la table `produit`
 --
 
-INSERT INTO `produit` (`idProduit`, `libelleProduit`, `prixProduit`, `qteProduit`, `matiereProduit`, `descriptifProduit`, `nomImage`) VALUES
-(1, 'Gants en Cuir', 30, 36, 'Cuir', 'Gants entièrement en cuir, parfait pour la moto !', 'cuir.png'),
-(2, 'Gants en Laine', 53, 37, 'Laine', 'Gants composés à 100% de laine de mouton deutsche qualitat', 'laine.png'),
-(3, 'Gants de Ski', 79, 100, 'Polyester', 'Gants 100% polyester', 'ski.png'),
-(4, 'Gants de Combat', 150, 19, 'Synthétique', 'Gants synthétiques parfait pour les sportifs et/ou street fighters !', 'freeride.png');
+INSERT INTO `produit` (`idProduit`, `libelleProduit`, `prixProduit`, `qteProduit`, `descriptifProduit`, `nomImage`) VALUES
+(1, 'Sonos', 30, 23, 'Ce système de hauts parleurs sans fils ou de composants audio hi-fi vous permettra d’écouter ce que vous voulez dans n’importe quelle pièce de votre maison.', 'sonos.png'),
+(2, 'Prizm', 53, 37, 'Appuyez sur un bouton et il choisit lui-même la musique à diffuser.', 'prizm.png'),
+(3, 'Trak', 79, 99, 'Trak est une version bracelet de Shazam. Il enregistre automatiquement les musiques entendues au cours d’une soirée et les classe en playlist selon les événements.', 'trak.png'),
+(4, 'Archos Music Beany', 150, 17, 'Ecouter sa musique avec style et la tête au chaud pendant l’hiver ? C’est possible avec le bonnet connecté Archos Music Beany.', 'archos.png'),
+(5, 'Super-M', 356, 85, ' Super-M est une enceinte bluetooth (compatible avec iOS et Androïd) résistante à l’eau et au sable.', 'super.png'),
+(6, 'Casque ZIK 2.0', 185, 26, 'Le Parrot ZIK 2.0 est décrit comme le meilleur casque bluetooth aujourd’hui sur le marché.', 'casque.png'),
+(7, 'Glove', 85, 33, 'Et si vous pouviez contrôler les applications principales de votre smartphone sans même avoir à le toucher ?', 'gant.png'),
+(8, 'Ampoule connectée', 20, 35, 'Cette ampoule compatible avec IOS, Android et Windows phone est munie d’un haut parleur.', 'ampoule.png'),
+(9, 'Iplay Piano', 101, 65, 'Si vous n’êtes pas trop fan de rock & roll vous pouvez toujours vous rabattre sur le mini piano connecté baptisé IPlay Piano.', 'piano.png');
 
 --
 -- Contraintes pour les tables exportées

@@ -388,6 +388,19 @@ h1 {
 	float: left;
 }
 
+.libAndPrix
+{
+	position: relative;
+	bottom: 50px;
+	left: 10px;
+}
+
+.desc
+{
+	width: 590px;
+	display: inline-block;
+}
+
 .supprPanier
 {
 	display : inline-block;

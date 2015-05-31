@@ -43,7 +43,7 @@ class Catalogue extends CI_Controller
 
 		$config['base_url'] = base_url() . "catalogue/index"; /* CodeIgniter Pagination */
 		$config['total_rows'] = $this->produit->record_count();
-		$config['per_page'] = 2;
+		$config['per_page'] = 5;
 		$choice = $config["total_rows"] / $config["per_page"];
 		$config["num_links"] = round($choice);
 
