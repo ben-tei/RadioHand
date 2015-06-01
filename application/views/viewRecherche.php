@@ -1,6 +1,9 @@
 		<?php include('header.php'); ?>
 		<div class="contenu">
 			<section>
+				<aside>
+					<?php include("viewSearchForm.php"); ?>
+				</aside>
 				<article>
 					<h1> Résultats de votre recherche : </h1> <?php
 					foreach($produits as $produit): /* parcourt chacun des produits trouvés et affiche ses infos */
@@ -13,7 +16,6 @@
 						echo ' ' . $produit->prixProduit . " €</p>";
 					endforeach; ?>
 				</article>
-				<?php include("viewSearchForm.php"); ?>
 			</section>
 		</div>
 		<?php include("footer.html"); ?>
