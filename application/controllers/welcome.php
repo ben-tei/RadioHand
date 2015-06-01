@@ -63,8 +63,15 @@ class Welcome extends CI_Controller
 				}
 				$this->load->view('viewAccueil.php', $data);
 			}
+			else
+			{
+				$this->load->view('viewAccueil.php');
+			}
 		}
-		$this->load->view('viewAccueil.php');
+		else
+		{
+			$this->load->view('viewAccueil.php');
+		}
 	}
 
 	public function notFound() /* error 404 */
