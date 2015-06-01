@@ -10,10 +10,11 @@
 						$path = 'catalogue/getProduit?idProduit=' . $produit->idProduit;
 						$img = '<img src="' . img_url($produit->nomImage) . '" alt="image" border="0" width="150" >';
 						echo '<p class="margeEntreLesGants">' . anchor($path, $img);
+						echo '<span class="libAndPrix">';
 						/* affiche l'image du produit. L'image est cliquable et redirige vers le produit en question */
 						echo anchor('catalogue/getProduit?idProduit=' . $produit->idProduit, $produit->libelleProduit, array('class' => 'liencatalogue'));
 						/* affiche le libellé du produit. Le libellé est cliquable et redirige vers le produit en question */
-						echo ' ' . $produit->prixProduit . " €</p>";
+						echo ' ' . $produit->prixProduit . " €</span></p>";
 					endforeach; ?>
 				</article>
 			</section>
