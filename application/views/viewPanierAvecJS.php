@@ -18,7 +18,7 @@
 					$i = 0;
 					while($i < count($panier)) /* parcourt chacune des lignes du panier et affiche ses infos */
 					{
-						echo '<div id="div' . $i . '">',
+						echo '<div id="divLigne' . $i . '">',
 						'<p class = "supprPanier" >',
 						'<a href="' . site_url() . 'catalogue/getProduit?idProduit=' . $produits[$i]->idProduit . '"><img class = "imagePanier" src="'. img_url($produits[$i]->nomImage) . '" border="0" width="75" alt="image"></a>',
 						/* affiche l'image du produit. L'image est cliquable et redirige vers le produit en question */
@@ -42,7 +42,7 @@
 							} ?>
 						</select> <?php
 						
-						echo '<div id="prix' . $i . '" style="display:inline-block; margin-left:5px;">',
+						echo '<div id="divTotalLigne' . $i . '" style="display:inline-block; margin-left:5px;">',
 						'Sous-total : ' . $totauxLignes[$i]->totalLigne . ' €</div>';
 
 						echo '<form method="post" action="' .  site_url()  . 'monpanier/deleteLigne/" class="supprPanier">
@@ -103,7 +103,7 @@
 						type: method,
 						data: data,
 						success: function(response) {
-							$('#div' + data[0].value).empty(); /* on vide la div de la ligne en question */
+							$('#divLigne' + data[0].value).empty(); /* on vide la div de la ligne en question */
 							$('#divTotalPanier').empty(); /* on vide la div du total du panier pour le remplacer par le nouveau */
 							document.getElementById('divTotalPanier').innerHTML += '<p class = "total" ><br>Total : ' + response + ' €</p>';
 							if(response == 0) /* s'il n'existe plus de lignes panier, on cache le boutton de confirmation de la commande */
@@ -125,7 +125,7 @@
 					data.push({'name': 'qtePanier', 'value': this.value});
 					data.push({'name': 'idProduit', 'value': this.id.split("+")[0]});
 					data.push({'name': 'prixProduit', 'value': this.id.split("+")[1]});
-					data.push({'name': 'divPrix', 'value': this.id.split("+")[2]});
+					data.push({'name': 'divLigne', 'value': this.id.split("+")[2]});
 					data.push({'name': 'pseudoMembre', 'value': this.id.split("+")[3]});
 					data.push({'name': 'totChaqueLigne', 'value': totalChaqueLigne});
 
@@ -140,8 +140,8 @@
 							}
 							else
 							{
-								$('#prix' + data[3].value).empty(); /* on vide la div du total de la ligne modifiée pour y mettre le nouveau */
-								document.getElementById('prix' + data[3].value).innerHTML += 'Sous-total : ' + response[0] + ' €';
+								$('#divTotalLigne' + data[3].value).empty(); /* on vide la div du total de la ligne modifiée pour y mettre le nouveau */
+								document.getElementById('divTotalLigne' + data[3].value).innerHTML += 'Sous-total : ' + response[0] + ' €';
 								$('#divTotalPanier').empty(); /* on vide la div du total du panier pour y mettre le nouveau */
 								document.getElementById('divTotalPanier').innerHTML += '<p class = "total" ><br>Total : ' + response[1] + ' €</p>';
 							}

@@ -45,6 +45,17 @@ class Produit extends CI_Model
 			return $query->result();
 		}
 	}
+	
+	public function getQteProduitById($idProduit)
+	{
+		if(isset($idProduit) && !empty($idProduit))
+		{
+			$query = $this->db->query('SELECT qteProduit FROM produit WHERE idProduit = "' . $idProduit . '"');
+			$row = $query->row_array();
+
+			return $row['qteProduit'];
+		}
+	}
 
 	public function addQteToProduit($idProduit, $qteProduit)
 	{

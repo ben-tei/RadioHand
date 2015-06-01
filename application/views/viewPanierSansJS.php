@@ -15,7 +15,7 @@
 					$i = 0;
 					while($i < count($panier)) /* parcourt chacune des lignes du panier et affiche ses infos */
 					{
-						echo '<div id="div' . $i . '">',
+						echo '<div id="divLigne' . $i . '">',
 						'<p class = "supprPanier" >',
 						'<a href="' . site_url() . 'catalogue/getProduit?idProduit=' . $produits[$i]->idProduit . '"><img class = "imagePanier" src="'. img_url($produits[$i]->nomImage) . '" border="0" width="75" alt="image"></a>',
 						/* affiche l'image du produit. L'image est cliquable et redirige vers le produit en question */
@@ -30,7 +30,7 @@
 							<input type="submit" name="submitPanierNoJS" style="display:none;">
 						</form> <?php
 						
-						echo '<div id="prix' . $i . '" style="display:inline-block; margin-left:5px;">',
+						echo '<div id="divTotalLigne' . $i . '" style="display:inline-block; margin-left:5px;">',
 						'Sous-total : ' . $totauxLignes[$i]->totalLigne . ' €</div>';
 
 						echo '<form method="post" action="' .  site_url()  . 'monpanier/deleteLigne/" class="supprPanier">
