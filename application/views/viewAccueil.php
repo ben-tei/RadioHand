@@ -1,7 +1,7 @@
 		<?php include('header.php'); ?>
 		<div class="contenu">
 			<section>
-				<aside id="asideAccueil">
+				<aside>
 					<h1>À propos de nous</h1>
 					<p>RHCorp (RadioHand Corporation), entreprise française, implantée depuis 10 ans dans plusieurs pays.</p>
 					<h3>Notre philosophie ?</h3>

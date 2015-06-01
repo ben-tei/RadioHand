@@ -108,7 +108,7 @@ nav ul
 	font-size: 16px;
 }
 
-#asideAccueil, #asideProduit, #asideBton
+aside
 {
 	text-align: center;
 	margin-top: 75px;
@@ -343,18 +343,6 @@ article
 {
 	text-align: justify;
 	width: 590px;
-}
-
-aside
-{
-	text-align: center;
-	margin-top: 75px;
-	background-color: #9cd4ef;
-	position: absolute;
-	margin-left: 75px;
-	width: 215px;
-	border: black thin dashed;
-	min-width: 250px;
 }
 
 h1 {

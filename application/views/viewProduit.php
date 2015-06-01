@@ -1,7 +1,7 @@
 		<?php include('header.php'); ?>
 		<div class="contenu">
 			<section>
-				<aside id="asideProduit">
+				<aside>
 					<?php include("viewSearchForm.php"); ?>
 				</aside>
 				<article id="articleProduit">

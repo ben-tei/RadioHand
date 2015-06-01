@@ -1,6 +1,9 @@
 ﻿		<?php include('header.php'); ?>
 		<div class="contenu">
 			<section>
+				<aside>
+					<?php include("viewSearchForm.php"); ?>
+				</aside>
 				<article> <?php
 					foreach($allProduits as $produit): /* parcourt chacun des produits et affiche ses infos */
 						$path = 'catalogue/getProduit?idProduit=' . $produit->idProduit;
@@ -14,9 +17,6 @@
 					endforeach; ?>
 					<span id="pagination"><?php echo $pages; ?></span> <!-- pagination -->
 				</article>
-				<aside>
-					<?php include("viewSearchForm.php"); ?>
-				</aside>
 			</section>
 		</div>
 		<?php include("footer.html"); ?>

@@ -3,7 +3,7 @@
 			<section> <?php
 				if(count($panier) > 0) /* s'il existe des lignes panier */
 				{ ?>
-					<aside id="asideBton">
+					<aside>
 						<form method="post" action="<?php echo site_url(); ?>mescommandes/createCommande" id="confirmCommande">
 							<input type="hidden" name="pseudoMembre" value="<?php echo $membre->pseudoMembre; ?>">
 							<input type="submit" name="submitCommande" value="Passer la commande" id="btonCommande">
