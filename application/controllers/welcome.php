@@ -41,28 +41,30 @@ class Welcome extends CI_Controller
 		}
 		else if(isset($_GET['pseudo']) && isset($_GET['cle']) && !empty($_GET['pseudo']) && !empty($_GET['cle'])) /* activation du compte via le lien présent dans le mail */
 		{
-			if($_GET['cle'] == $this->membre->getCleByPseudo($_GET['pseudo']))
+			$membre = $this->membre->getMembreByPseudo($_GET['pseudo']);
+			
+			if($membre)
 			{
-				if($this->membre->getActifByPseudo($_GET['pseudo']) == "0")
+				if($_GET['cle'] == $membre->cle)
 				{
-					$this->membre->updateActif($_GET['pseudo']);
-					$data['message'] = "Votre compte a bien été activé !";
+					if($membre->actif == "0")
+					{
+						$this->membre->updateActif($_GET['pseudo']);
+						$data['message'] = "Votre compte a bien été activé !";
+					}
+					else
+					{
+						$data['message'] = "Votre compte a déjà été activé !";
+					}
 				}
 				else
 				{
-					$data['message'] = "Votre compte a déjà été activé !";
+					$data['message'] = "La clé ne correspond pas !";
 				}
+				$this->load->view('viewAccueil.php', $data);
 			}
-			else
-			{
-				$data['message'] = "La clé ne correspond pas !";
-			}
-			$this->load->view('viewAccueil.php', $data);
 		}
-		else
-		{
-			$this->load->view('viewAccueil.php');
-		}
+		$this->load->view('viewAccueil.php');
 	}
 
 	public function notFound() /* error 404 */

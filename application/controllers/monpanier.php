@@ -114,10 +114,12 @@ class MonPanier extends CI_Controller
 				{
 					$this->form_validation->set_rules($p, ucfirst($p), 'trim|encode_php_tags|xss_clean');
 				}
+				
+				$produit = $this->produit->getProduitById($_POST['idProduit']);
 
-				if($this->form_validation->run() && $this->membre->getMembreByPseudo($_POST['pseudoMembre']) && $this->produit->getProduitById($_POST['idProduit'])) /* si le formulaire est valide et que le membre et le produit existent */
+				if($this->form_validation->run() && $this->membre->getMembreByPseudo($_POST['pseudoMembre']) && $produit) /* si le formulaire est valide et que le membre et le produit existent */
 				{
-					if($_POST['quantite'] <= $this->produit->getQteProduitById($_POST['idProduit'])) /* si la quantité demandée est inférieur à la quantité en stock */
+					if($_POST['quantite'] <= $produit->qteProduit) /* si la quantité demandée est inférieur à la quantité en stock */
 					{
 						$alreadyCreated = $this->lignepanier->getLignePanierByUserAndProduit($_POST['pseudoMembre'], $_POST['idProduit']);
 
@@ -215,8 +217,10 @@ class MonPanier extends CI_Controller
 				{
 					$this->form_validation->set_rules($p, ucfirst($p), 'trim|encode_php_tags|xss_clean');
 				}
+				
+				$produit = $this->produit->getProduitById($_POST['idProduit']);
 
-				if($this->form_validation->run() && $this->membre->getMembreByPseudo($_POST['pseudoMembre']) && $this->produit->getProduitById($_POST['idProduit'])) /* si le formulaire est valide et que le membre et le produit existent */
+				if($this->form_validation->run() && $this->membre->getMembreByPseudo($_POST['pseudoMembre']) && $produit) /* si le formulaire est valide et que le membre et le produit existent */
 				{
 					if(isset($_POST['totChaqueLigne'])) /* si tableau JavaScript il y a */
 					{
@@ -233,7 +237,7 @@ class MonPanier extends CI_Controller
 						
 						if($qteActuelleLignePanier) /* s'il existe bien une quantité */
 						{
-							if(intval($_POST['qtePanier']) - intval($qteActuelleLignePanier) > $this->produit->getQteProduitById($_POST['idProduit'])) /* si la quantité demandée est supérieur à la quantité en stock, on actualise la page */
+							if(intval($_POST['qtePanier']) - intval($qteActuelleLignePanier) > $produit->qteProduit) /* si la quantité demandée est supérieur à la quantité en stock, on actualise la page */
 							{
 								header('Content-Type: application/x-json; charset=utf-8');
 								echo(json_encode('Plus assez en stock'));

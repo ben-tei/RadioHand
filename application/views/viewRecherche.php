@@ -8,7 +8,7 @@
 					<h1> Résultats de votre recherche : </h1> <?php
 					foreach($produits as $produit): /* parcourt chacun des produits trouvés et affiche ses infos */
 						$path = 'catalogue/getProduit?idProduit=' . $produit->idProduit;
-						$img = '<img src="' . img_url($produit->nomImage) . '" alt="Image du gant" border="0" width="150" >';
+						$img = '<img src="' . img_url($produit->nomImage) . '" alt="image" border="0" width="150" >';
 						echo '<p class="margeEntreLesGants">' . anchor($path, $img);
 						/* affiche l'image du produit. L'image est cliquable et redirige vers le produit en question */
 						echo anchor('catalogue/getProduit?idProduit=' . $produit->idProduit, $produit->libelleProduit, array('class' => 'liencatalogue'));

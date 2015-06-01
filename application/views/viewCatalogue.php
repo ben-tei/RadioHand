@@ -7,7 +7,7 @@
 				<article> <?php
 					foreach($allProduits as $produit): /* parcourt chacun des produits et affiche ses infos */
 						$path = 'catalogue/getProduit?idProduit=' . $produit->idProduit;
-						$img = '<img src="' . img_url($produit->nomImage) . '" alt="Image du gant" border="0" width="150" >';
+						$img = '<img src="' . img_url($produit->nomImage) . '" alt="image" border="0" width="150" >';
 						echo '<p class="margeEntreLesGants">' . anchor($path, $img);
 						echo '<span class="libAndPrix">';
 						/* affiche l'image du produit. L'image est cliquable et redirige vers le produit en question */

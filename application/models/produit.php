@@ -46,50 +46,6 @@ class Produit extends CI_Model
 		}
 	}
 
-	public function getQteProduitById($idProduit)
-	{
-		if(isset($idProduit) && !empty($idProduit))
-		{
-			$query = $this->db->query('SELECT qteProduit FROM produit WHERE idProduit = "' . $idProduit . '"');
-			$row = $query->row_array();
-
-			return $row['qteProduit'];
-		}
-	}
-
-	public function getPrixProduitById($idProduit)
-	{
-		if(isset($idProduit) && !empty($idProduit))
-		{
-			$query = $this->db->query('SELECT prixProduit FROM produit WHERE idProduit = "' . $idProduit . '"');
-			$row = $query->row_array();
-
-			return $row['prixProduit'];
-		}
-	}
-
-	public function getNomImageProduitById($idProduit)
-	{
-		if(isset($idProduit) && !empty($idProduit))
-		{
-			$query = $this->db->query('SELECT nomImage FROM produit WHERE idProduit = "' . $idProduit . '"');
-			$row = $query->row_array();
-
-			return $row['nomImage'];
-		}
-	}
-
-	public function getLibelleProduitById($idProduit)
-	{
-		if(isset($idProduit) && !empty($idProduit))
-		{
-			$query = $this->db->query('SELECT libelleProduit FROM produit WHERE idProduit = "' . $idProduit . '"');
-			$row = $query->row_array();
-
-			return $row['libelleProduit'];
-		}
-	}
-
 	public function addQteToProduit($idProduit, $qteProduit)
 	{
 		if(isset($idProduit) && !empty($idProduit) && isset($qteProduit) && !empty($qteProduit))

@@ -20,7 +20,7 @@
 					{
 						echo '<div id="div' . $i . '">',
 						'<p class = "supprPanier" >',
-						'<a href="' . site_url() . 'catalogue/getProduit?idProduit=' . $produits[$i]->idProduit . '"><img class = "imagePanier" src="'. img_url($produits[$i]->nomImage) . '" border="0" width="75" alt="Image du gant"></a>',
+						'<a href="' . site_url() . 'catalogue/getProduit?idProduit=' . $produits[$i]->idProduit . '"><img class = "imagePanier" src="'. img_url($produits[$i]->nomImage) . '" border="0" width="75" alt="image"></a>',
 						/* affiche l'image du produit. L'image est cliquable et redirige vers le produit en question */
 						'<a class="liencatalogue margeEntreLesInfosPanier" href="'. site_url() .'catalogue/getProduit?idProduit=' . $produits[$i]->idProduit . '">' . $produits[$i]->libelleProduit . '</a>',
 						/* affiche le libellé du produit. Le libellé est cliquable et redirige vers le produit en question */

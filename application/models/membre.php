@@ -87,17 +87,6 @@ class Membre extends CI_Model
 		}
 	}
 
-	public function getActifByPseudo($pseudoMembre)
-	{
-		if(isset($pseudoMembre) && !empty($pseudoMembre))
-		{
-			$query = $this->db->query('SELECT actif FROM membre WHERE pseudoMembre = ' . $this->db->escape($pseudoMembre));
-			$row = $query->row_array();
-
-			return $row['actif'];
-		}
-	}
-
 	public function updateActif($pseudoMembre)
 	{
 		if(isset($pseudoMembre) && !empty($pseudoMembre))
@@ -109,17 +98,6 @@ class Membre extends CI_Model
 			$array = array('pseudoMembre' => $pseudoMembre);
 			$this->db->where($array); 
 			$this->db->update('membre', $data);
-		}
-	}
-
-	public function getCleByPseudo($pseudoMembre)
-	{
-		if(isset($pseudoMembre) && !empty($pseudoMembre))
-		{
-			$query = $this->db->query('SELECT cle FROM membre WHERE pseudoMembre = ' . $this->db->escape($pseudoMembre));
-			$row = $query->row_array();
-
-			return $row['cle'];
 		}
 	}
 

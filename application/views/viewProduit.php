@@ -26,7 +26,7 @@
 					<p>Prix : <?php echo $produit->prixProduit; ?> €</p>
 					<p>Quantité en stock : <?php echo $produit->qteProduit; ?></p>
 					<p><span class="desc">Description : <br><?php echo $produit->descriptifProduit; ?></span></p>
-					<p>Aperçu : <br><img id="imgProduit" src="<?php echo img_url($produit->nomImage) ?>" width="300" border="0" alt="Image du gant"></p>
+					<p>Aperçu : <br><img id="imgProduit" src="<?php echo img_url($produit->nomImage) ?>" width="300" border="0" alt="image"></p>
 				</article>
 			</section>
 		</div>

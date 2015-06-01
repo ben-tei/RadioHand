@@ -60,8 +60,10 @@ class MesCommandes extends CI_Controller
 			{
 				$this->form_validation->set_rules($p, ucfirst($p), 'trim|encode_php_tags|xss_clean');
 			}
+			
+			$membre = $this->membre->getMembreByPseudo($_POST['pseudoMembre']);
 
-			if($this->form_validation->run() && $this->membre->getMembreByPseudo($_POST['pseudoMembre'])) /* si le formulaire est valide et que le membre existe */
+			if($this->form_validation->run() && $membre) /* si le formulaire est valide et que le membre existe */
 			{
 				$panier = $this->lignepanier->getLignePanierByUser($_POST['pseudoMembre']);
 				
@@ -69,13 +71,27 @@ class MesCommandes extends CI_Controller
 				{
 					$idCommande = $this->commande->addCommande($_POST['pseudoMembre']);
 					$i = 0;
+					$message = 'Merci pour votre achat ! A  bientôt !<br><br>';
+					$message .= 'Numéro de Commande : ' . strval($idCommande) . '<br><br>';
 					while($i < count($panier))
 					{
-						$this->lignecommande->addLigneCommande($idCommande, $panier[$i]->idProduit, $this->produit->getPrixProduitById($panier[$i]->idProduit), $panier[$i]->qteProduit, $this->produit->getNomImageProduitById($panier[$i]->idProduit), $this->produit->getLibelleProduitById($panier[$i]->idProduit));
+						$produit = $this->produit->getProduitById($panier[$i]->idProduit);
+						$this->lignecommande->addLigneCommande($idCommande, $panier[$i]->idProduit, $produit->prixProduit, $panier[$i]->qteProduit, $produit->nomImage, $produit->libelleProduit);
 						$this->lignepanier->delLigne($_POST['pseudoMembre'], $panier[$i]->idProduit);
+						$message .= 'Article : ' . strval($produit->libelleProduit) . '<br>';
+						$message .= 'Quantité : ' . strval($panier[$i]->qteProduit) . '<br>';
+						$message .= 'Prix : ' . strval($produit->prixProduit) . ' €<br><br>';
 						$i++;
 					}
+					
+					$message .= 'Total : ' . strval($this->lignecommande->getMontantByIdCommande($idCommande)) . ' €';
+					
+					$sujet = 'Recapitulatif de la commande';
+
+					$this->mail->send('radiohand@yopmail.com', $membre->emailMembre, $sujet, $message); /* envoi du mail */
+					
 					setcookie('confirmation', 'jenesaispasquoimettre', 0, '/', null, false, true);
+													
 					redirect('mescommandes/confirmationCommande', 'refresh');
 				}
 				else
